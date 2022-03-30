@@ -13,6 +13,7 @@ UploadDropTarget = require '../../components/upload-drop-target'
 ManifestView = require '../../components/manifest-view'
 isAdmin = require '../../lib/is-admin'
 { addIndexFields, cleanSubjectData } = require './helpers/subject-sets'
+{ default: IndexedSubjectSet } = require './subject-sets/IndexedSubjectSet'
 
 NOOP = Function.prototype
 
@@ -196,6 +197,9 @@ EditSubjectSetPage = createReactClass
         </p>
       </form>
 
+      {if @props.subjectSet.metadata.indexFields
+        <IndexedSubjectSet subjectSet={@props.subjectSet} />
+      }
       <hr />
 
       This set contains {@props.subjectSet.set_member_subjects_count} subjects:<br />
